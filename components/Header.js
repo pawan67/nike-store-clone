@@ -9,7 +9,7 @@ function Header() {
       <div className=" px-3 max-w-7xl mx-auto flex h-full justify-between items-center ">
         <div className=" cursor-pointer  w-14">
           <svg
-            class="pre-logo-svg"
+            className="pre-logo-svg"
             height="60px"
             width="60px"
             fill="#111"
