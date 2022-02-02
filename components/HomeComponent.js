@@ -5,7 +5,7 @@ import Product from "./Product";
 function HomeComponent({ data }) {
   console.log(data);
   return (
-    <div className=" sm:mt-5 max-w-7xl mx-auto">
+    <div className=" mt-14 sm:mt-15  max-w-7xl mx-auto">
       <Banner
         img1="images/banner2.jpg"
         img2="images/banner2left.jpg"
@@ -27,7 +27,7 @@ function HomeComponent({ data }) {
         img2="images/banner1sm.jpg"
         text="Men Shoes"
       />
-      <div className="  flex flex-wrap ">
+      <div className=" mb-10  flex flex-wrap ">
         {data.slice(10, 15).map(({ id, title, source, img, price }) => (
           <Product
             key={id}
@@ -38,6 +38,11 @@ function HomeComponent({ data }) {
           />
         ))}
       </div>
+      <Banner
+        img1="images/banner3.jpg"
+        img2="images/banner3.jpg"
+        text="Kids Shoes"
+      />
     </div>
   );
 }

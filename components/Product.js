@@ -2,7 +2,7 @@ import React from "react";
 
 function Product({ title, source, img, price }) {
   return (
-    <div className=" shadow-xl   p-4   rounded-2xl mt-10 w-[180px]  md:w-[300px] mx-auto flex flex-col justify-between ">
+    <div className=" shadow-xl hover:shadow-2xl hover:scale-110 transition   p-4   rounded-2xl mt-10 w-[180px]  md:w-[300px] mx-auto flex flex-col justify-between ">
       <div>
         <img src={img} className=" rounded-lg" alt="" />
         <div className=" flex justify-between mt-3">
