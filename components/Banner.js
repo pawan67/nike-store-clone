@@ -2,14 +2,11 @@ import React from "react";
 
 function Banner({ img1, img2, text, link }) {
   return (
-    <div className=" mt-10 relative ">
-      <img src={img1} className=" hidden sm:block rounded-md" alt="" />
+    <div className="  relative ">
+      <img src={img1} className=" hidden sm:block " alt="" />
       <img src={img2} className=" sm:hidden " alt="" />
-      <div className=" text-xl left-14  bottom-5 items-center sm:left-10 absolute sm:bottom-10 flex space-x-5">
-        <p className=" bg-gray-300 px-3 py-1 rounded-full">{text}</p>
-        <p className=" w-28 cursor-pointer bg-black text-white  py-1 text-center rounded-full">
-          Shop
-        </p>
+      <div className=" bg-black text-white absolute  bottom-0 left-0 text-center h-12 flex items-center uppercase font-bold justify-center text-xl cursor-pointer  right-0">
+        SHOP {text}
       </div>
     </div>
   );
