@@ -27,8 +27,8 @@ function HomeComponent({ data }) {
         img2="images/banner1sm.jpg"
         text="Men Shoes"
       />
-      <div className=" mb-10  flex flex-wrap ">
-        {data.slice(10, 15).map(({ id, title, source, img, price }) => (
+       <div className=" mb-10  flex flex-wrap ">
+        {data.slice(50, 58).map(({ id, title, source, img, price }) => (
           <Product
             key={id}
             price={price}
@@ -43,6 +43,17 @@ function HomeComponent({ data }) {
         img2="images/banner3.jpg"
         text="Kids Shoes"
       />
+      <div className=" mb-10  flex flex-wrap ">
+        {data.slice(10, 15).map(({ id, title, source, img, price }) => (
+          <Product
+            key={id}
+            price={price}
+            title={title}
+            source={source}
+            img={img}
+          />
+        ))}
+      </div>
     </div>
   );
 }

@@ -4,16 +4,45 @@ import { BiSearch } from "react-icons/bi";
 import { BsBag } from "react-icons/bs";
 import { AiOutlineMenu } from "react-icons/ai";
 import { GrFormClose } from "react-icons/gr";
+import { MdKeyboardArrowRight } from "react-icons/md";
 function Header() {
   const [menu, setMenu] = useState(false);
   return (
     <>
       <div
         className={`fixed  z-50 ${
-          menu ? "right-0 transition-all" : " transition-all -right-[500px]"
-        } right-0  w-3/4 h-screen bg-white p-6`}
+          menu ? "right-0 transition-all" : " transition-all -right-[4000px]"
+        } right-0  w-3/4 h-screen bg-white p-10`}
       >
-        <GrFormClose onClick={()=> setMenu(false)} className=" float-right text-4xl" />
+        <GrFormClose
+          onClick={() => setMenu(false)}
+          className=" float-right text-4xl"
+        />
+        <div className="  items-center mx-auto mt-20 text-2xl flex justify-between">
+          <h2>Men</h2> <MdKeyboardArrowRight />
+        </div>
+        <div className="  items-center mx-auto mt-10 text-2xl flex justify-between">
+          <h2>Women</h2> <MdKeyboardArrowRight />
+        </div>
+        <div className="  items-center mx-auto mt-10 text-2xl flex justify-between">
+          <h2>Kids</h2> <MdKeyboardArrowRight />
+        </div>
+        <div className=" items-center flex  mt-10">
+          <img className=" w-20" src="images/jordan.png" alt="" />
+          <h2 className=" ml-5">Jordan</h2>
+        </div>
+        <div className=" text-xl mt-10 text-gray-700">
+          Become a Nike Member for the best products, inspiration and stories in
+          sport.
+        </div>
+        <div className=" flex mt-10 ">
+          <button className=" active:scale-95 bg-black inline-block text-white text-lg px-3 py-1 rounded-full">
+            Join us
+          </button>
+          <button className=" active:scale-95 bg-white inline-block text-black border  text-lg ml-3 px-3 py-1 rounded-full">
+            Sign in
+          </button>
+        </div>
       </div>
       <div className="w-screen fixed bg-white z-10 shadow-md h-14 border-b">
         <div className=" px-3 max-w-7xl mx-auto flex h-full justify-between items-center ">
