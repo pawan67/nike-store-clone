@@ -1,11 +1,17 @@
 import React from "react";
+import { useUserContext } from "../context/userContext";
 import Banner from "./Banner";
 import Product from "./Product";
 
 function HomeComponent({ data }) {
   console.log(data);
+  const { menu, setMenu } = useUserContext();
   return (
-    <div className=" mt-14 sm:mt-15  max-w-7xl mx-auto">
+    <div
+      className={`${
+        menu ? "blur-md  " : " "
+      } mt-14 sm:mt-15  transition-all max-w-7xl mx-auto`}
+    >
       <Banner
         img1="images/banner2.jpg"
         img2="images/banner2left.jpg"
@@ -27,7 +33,7 @@ function HomeComponent({ data }) {
         img2="images/banner1sm.jpg"
         text="Men Shoes"
       />
-       <div className=" mb-10  flex flex-wrap ">
+      <div className=" mb-10  flex flex-wrap ">
         {data.slice(50, 58).map(({ id, title, source, img, price }) => (
           <Product
             key={id}
@@ -44,7 +50,7 @@ function HomeComponent({ data }) {
         text="Kids Shoes"
       />
       <div className=" mb-10  flex flex-wrap ">
-        {data.slice(10, 15).map(({ id, title, source, img, price }) => (
+        {data.slice(10, 16).map(({ id, title, source, img, price }) => (
           <Product
             key={id}
             price={price}

@@ -1,16 +1,34 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { BsBag } from "react-icons/bs";
 import { AiOutlineMenu } from "react-icons/ai";
 import { GrFormClose } from "react-icons/gr";
 import { MdKeyboardArrowRight } from "react-icons/md";
+import { useUserContext } from "../context/userContext";
 function Header() {
-  const [menu, setMenu] = useState(false);
+  const { menu, setMenu } = useUserContext();
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const [goingUp, setGoingUp] = useState(true);
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (scrollPosition < currentScrollY && goingUp) {
+        setGoingUp(false);
+      }
+      if (scrollPosition > currentScrollY && !goingUp) {
+        setGoingUp(true);
+      }
+      setScrollPosition(currentScrollY);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [goingUp, scrollPosition]);
+  console.log(goingUp);
   return (
     <>
       <div
-        className={`fixed  z-50 ${
+        className={`fixed  shadow-md  z-50 ${
           menu ? "right-0 transition-all" : " transition-all -right-[4000px]"
         } right-0  w-3/4 h-screen bg-white p-10`}
       >
@@ -44,7 +62,15 @@ function Header() {
           </button>
         </div>
       </div>
-      <div className="w-screen fixed bg-white z-10 shadow-md h-14 border-b">
+      <div
+        className={`w-screen transition-all duration-300  ${
+          goingUp
+            ? " transition-all top-0 duration-500"
+            : "duration-500 -top-48 transition-all "
+        }  transition-all fixed ${
+          menu ? "blur-sm" : ""
+        } bg-white z-10 shadow-md h-14 border-b`}
+      >
         <div className=" px-3 max-w-7xl mx-auto flex h-full justify-between items-center ">
           <div className=" cursor-pointer  w-14">
             <svg
