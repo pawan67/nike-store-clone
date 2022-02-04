@@ -28,8 +28,10 @@ function Header() {
   return (
     <>
       <div
-        className={`fixed  shadow-md  z-50 ${
-          menu ? "right-0 transition-all" : " transition-all -right-[4000px]"
+        className={`fixed duration-500 transition-all  shadow-md  z-50 ${
+          menu
+            ? "right-0 transition-all duration-500"
+            : " transition-all -right-[4000px]"
         } right-0  w-3/4 h-screen bg-white p-10`}
       >
         <GrFormClose
@@ -68,7 +70,7 @@ function Header() {
             ? " transition-all top-0 duration-500"
             : "duration-500 -top-48 transition-all "
         }  transition-all fixed ${
-          menu ? "blur-sm" : ""
+          menu ? "blur-sm transition-all duration-500" : ""
         } bg-white z-10 shadow-md h-14 border-b`}
       >
         <div className=" px-3 max-w-7xl mx-auto flex h-full justify-between items-center ">
