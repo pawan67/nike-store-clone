@@ -7,10 +7,11 @@ import Header from "../components/Header";
 import HomeComponent from "../components/HomeComponent";
 import Footer from "../components/Footer";
 import { useUserContext } from "../context/userContext";
+
 export default function Home({ data }) {
   const { fetchedData, setData } = useUserContext();
   setData(data);
-  
+
   return (
     <div className=" overflow-x-hidden">
       {/* {data.map((res, id) => {
@@ -26,6 +27,7 @@ export default function Home({ data }) {
       })} */}
       <Header />
       <HomeComponent data={data} />
+
       <Footer />
     </div>
   );

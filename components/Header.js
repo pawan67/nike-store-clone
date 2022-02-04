@@ -6,7 +6,10 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { GrFormClose } from "react-icons/gr";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { useUserContext } from "../context/userContext";
+import Link from "next/link";
 function Header() {
+  const { options, setOptions } = useUserContext();
+
   const { menu, setMenu } = useUserContext();
   const [scrollPosition, setScrollPosition] = useState(0);
   const [goingUp, setGoingUp] = useState(true);
@@ -28,9 +31,9 @@ function Header() {
   return (
     <>
       <div
-        className={`fixed duration-500 transition-all  shadow-md  z-50 ${
+        className={`fixed duration-200 transition-all  shadow-md  z-50 ${
           menu
-            ? "right-0 transition-all duration-500"
+            ? "right-0 transition-all duration-200"
             : " transition-all -right-[4000px]"
         } right-0  w-3/4 h-screen bg-white p-10`}
       >
@@ -39,13 +42,16 @@ function Header() {
           className=" float-right text-4xl"
         />
         <div className="  items-center mx-auto mt-20 text-2xl flex justify-between">
-          <h2>Men</h2> <MdKeyboardArrowRight />
+          <h2 onClick={() => setOptions("men")}>Men</h2>{" "}
+          <MdKeyboardArrowRight />
         </div>
         <div className="  items-center mx-auto mt-10 text-2xl flex justify-between">
-          <h2>Women</h2> <MdKeyboardArrowRight />
+          <h2 onClick={() => setOptions("women")}>Women</h2>{" "}
+          <MdKeyboardArrowRight />
         </div>
         <div className="  items-center mx-auto mt-10 text-2xl flex justify-between">
-          <h2>Kids</h2> <MdKeyboardArrowRight />
+          <h2 onClick={() => setOptions("kids")}>Kids</h2>{" "}
+          <MdKeyboardArrowRight />
         </div>
         <div className=" items-center flex  mt-10">
           <img className=" w-20" src="images/jordan.png" alt="" />
@@ -74,22 +80,27 @@ function Header() {
         } bg-white z-10 shadow-md h-14 border-b`}
       >
         <div className=" px-3 max-w-7xl mx-auto flex h-full justify-between items-center ">
-          <div className=" cursor-pointer  w-14">
-            <svg
-              className="pre-logo-svg"
-              height="60px"
-              width="60px"
-              fill="#111"
-              viewBox="0 0 69 32"
+          <Link href="/">
+            <div
+              onClick={() => setOptions("")}
+              className=" cursor-pointer  w-14"
             >
-              <path d="M68.56 4L18.4 25.36Q12.16 28 7.92 28q-4.8 0-6.96-3.36-1.36-2.16-.8-5.48t2.96-7.08q2-3.04 6.56-8-1.6 2.56-2.24 5.28-1.2 5.12 2.16 7.52Q11.2 18 14 18q2.24 0 5.04-.72z"></path>
-            </svg>
-          </div>
+              <svg
+                className="pre-logo-svg"
+                height="60px"
+                width="60px"
+                fill="#111"
+                viewBox="0 0 69 32"
+              >
+                <path d="M68.56 4L18.4 25.36Q12.16 28 7.92 28q-4.8 0-6.96-3.36-1.36-2.16-.8-5.48t2.96-7.08q2-3.04 6.56-8-1.6 2.56-2.24 5.28-1.2 5.12 2.16 7.52Q11.2 18 14 18q2.24 0 5.04-.72z"></path>
+              </svg>
+            </div>
+          </Link>
           <div className=" hidden sm:block">
             <div className=" text-lg cursor-pointer  flex space-x-5  ">
-              <p>Men </p>
-              <p>Women </p>
-              <p>Kids </p>
+              <p onClick={() => setOptions("men")}>Men </p>
+              <p onClick={() => setOptions("women")}>Women </p>
+              <p onClick={() => setOptions("kids")}>Kids </p>
             </div>
           </div>
           <div className="  space-x-5 text-2xl items-center flex ">
