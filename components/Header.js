@@ -1,17 +1,21 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { BiSearch } from "react-icons/bi";
+import { VscClose } from "react-icons/vsc";
 import { BsBag } from "react-icons/bs";
 import { AiOutlineMenu } from "react-icons/ai";
 import { GrFormClose } from "react-icons/gr";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { useUserContext } from "../context/userContext";
 import Link from "next/link";
-function Header() {
+import { data } from "autoprefixer";
+import SearchedData from "./SearchedData";
+function Header({ data }) {
   const { options, setOptions } = useUserContext();
-
+  // const [fetchedData, setData] = useState(data)
   const { menu, setMenu } = useUserContext();
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [filteredResults, setFilteredResults] = useState([]);
   const [goingUp, setGoingUp] = useState(true);
   useEffect(() => {
     const handleScroll = () => {
@@ -27,9 +31,33 @@ function Header() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [goingUp, scrollPosition]);
-  console.log(goingUp);
+  const [searchInput, setSearchInput] = useState("");
+  const [isSearch, setIsSearch] = useState(false);
+  const searchItems = (searchValue) => {
+    setSearchInput(searchValue);
+    console.log(searchInput);
+
+    const filteredData = data.filter((item) => {
+      return Object.values(item)
+        .join("")
+        .toLowerCase()
+        .includes(searchInput.toLowerCase());
+    });
+    setFilteredResults(filteredData);
+    console.log(filteredResults);
+  };
+  useEffect(() => {
+    if (searchInput == "") {
+      setIsSearch(false);
+    } else {
+      setIsSearch(true);
+    }
+    console.log(isSearch);
+  });
   return (
     <>
+      {isSearch ? <SearchedData data={filteredResults} /> : ""}
+
       <div
         className={`fixed duration-200 transition-all  shadow-md  z-50 ${
           menu
@@ -42,15 +70,36 @@ function Header() {
           className=" float-right text-4xl"
         />
         <div className="  items-center mx-auto mt-20 text-2xl flex justify-between">
-          <h2 onClick={() => setOptions("men")}>Men</h2>{" "}
+          <h2
+            onClick={() => {
+              setMenu(false);
+              setOptions("men");
+            }}
+          >
+            Men
+          </h2>{" "}
           <MdKeyboardArrowRight />
         </div>
         <div className="  items-center mx-auto mt-10 text-2xl flex justify-between">
-          <h2 onClick={() => setOptions("women")}>Women</h2>{" "}
+          <h2
+            onClick={() => {
+              setMenu(false);
+              setOptions("women");
+            }}
+          >
+            Women
+          </h2>{" "}
           <MdKeyboardArrowRight />
         </div>
         <div className="  items-center mx-auto mt-10 text-2xl flex justify-between">
-          <h2 onClick={() => setOptions("kids")}>Kids</h2>{" "}
+          <h2
+            onClick={() => {
+              setMenu(false);
+              setOptions("kids");
+            }}
+          >
+            Kids
+          </h2>{" "}
           <MdKeyboardArrowRight />
         </div>
         <div className=" items-center flex  mt-10">
@@ -107,12 +156,19 @@ function Header() {
             <div className="flex bg-slate-100 items-center rounded-full py-1 px-2">
               <BiSearch />
               <input
+                onChange={(e) => searchItems(e.target.value)}
                 placeholder="Search"
                 className=" pl-2  h-8 text-base outline-none w-28 rounded-full bg-slate-100"
                 type="text"
               />
+              {isSearch ? <VscClose onClick={() => setSearchInput("")} /> : " "}
             </div>
-            <BsBag />
+            <div className=" relative">
+              <BsBag />
+              <span className=" absolute text-sm -right-3 -top-2 bg-black text-white px-1.5 rounded-full">
+                1
+              </span>
+            </div>
             <AiOutlineMenu
               onClick={() => setMenu(true)}
               className=" sm:hidden"

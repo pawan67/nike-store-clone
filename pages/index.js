@@ -13,8 +13,18 @@ export default function Home({ data }) {
   setData(data);
 
   return (
-    <div className=" overflow-x-hidden">
-      {/* {data.map((res, id) => {
+    <>
+      <Head>
+        <link
+          nes=""
+          rel="icon"
+          sizes="192x192"
+          href="https://www.nike.com/android-icon-192x192.png"
+        />
+        <title>Nike. Just Do It. Nike IN</title>
+      </Head>
+      <div className=" overflow-x-hidden">
+        {/* {data.map((res, id) => {
         if (res.source == "kids-shoes") {
           return (
             <div key={id}>
@@ -25,11 +35,12 @@ export default function Home({ data }) {
           );
         }
       })} */}
-      <Header />
-      <HomeComponent data={data} />
+        <Header data={data} />
+        <HomeComponent data={data} />
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </>
   );
 }
 export async function getServerSideProps() {
